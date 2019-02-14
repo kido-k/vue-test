@@ -6,3 +6,5 @@ vm.$watch(function () {
 });
 
 vm.items[0].quantity = 1;
+
+console.log(vm.totalPrice)
