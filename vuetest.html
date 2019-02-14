@@ -9,10 +9,17 @@
 </head>
 <body>
     <div id="app">
+        <p>{{message}}</p>
     </div>
 </body>
 <script>
     // ロードされ、Vueがグローバル変数として定義されているかを確認
     console.assert(typeof Vue !== 'undefined');
+    new Vue({
+        el:'#app',
+        data:{
+            message: "こんにちは！"
+        }
+    });
 </script>
 </html>
