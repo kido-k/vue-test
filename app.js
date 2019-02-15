@@ -11,7 +11,7 @@ var items = [{
     {
         name: '消しゴム',
         price: 500,
-        quantity: 1,
+        quantity: 0,
     },
 ];
 
@@ -34,24 +34,33 @@ var vm = new Vue({
 
     el: "#app",
     data: {
-        items: items
+        items: items,
     },
     filters: {
         numberWithDelimiter: function (value) {
             if (!value) {
                 return '0'
             }
-            return value.toString().replace(/(\d)(?=(\d{3})+$)/g,'$1')
+            return value.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,')
         }
     },
     computed: {
-        totalPrice: function(){
-            return this.items.reduce(function(sum, item){
+        totalPrice: function () {
+            return this.items.reduce(function (sum, item) {
                 return sum + (item.price * item.quantity);
             }, 0)
         },
-        totalPriceWithTax: function(){
+        totalPriceWithTax: function () {
             return Math.floor(this.totalPrice * 1.08)
-        } 
+        },
+        canBuy: function () {
+            return this.totalPrice >= 1000
+        },
+        errorMsgStyle: function () {
+            return {
+                border: this.canBuy? '' : '1px solid red',
+                color: this.canBuy? '' : 'red',
+            }
+        }
     }
 });
