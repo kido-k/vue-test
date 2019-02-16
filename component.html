@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue@2.5.17"></script>
+    <title>Vue componentのチェック</title>
+</head>
+
+<body>
+    <!-- <ul id="example">
+        <list-item></list-item>
+    </ul> -->
+    <div id="fruits-list">
+        <fruits-list-title></fruits-list-title>
+        <fruits-list-description></fruits-list-description>
+        <fruits-list-table></fruits-list-table>
+    </div>
+
+    <div id="app">
+        <input-date-with-today></input-date-with-today>
+    </div>
+</body>
+<script>
+    Vue.component('input-date-with-today',{
+        render: function(createElement){
+            return createElement('input',{
+                attrs:{
+                    type:'date',
+                    value: new Date().toISOString().substring(0,10)
+                }
+            })
+        }
+    })
+
+    Vue.component('fruits-list-title', {
+        template: '<h1>フルーツ一覧</h1>',
+        // data: function(){
+        //     return {contents:'bar'}
+        // }
+    })
+
+    Vue.component('fruits-list-description', {
+        template: '<p>季節の代表的なフルーツの一覧です</p>',
+    })
+
+    Vue.component('fruits-list-table', {
+        template: `<table>
+            <tr>
+                <th>季節</th>
+                <td>フルーツ</td>
+            </tr>
+            <tr>
+                <th>春</th>
+                <td>いちご</td>
+            </tr>
+            <tr>
+                <th>夏</th>
+                <td>スイカ</td>
+            </tr>
+            <tr>
+                <th>秋</th>
+                <td>ぶどう</td>
+            </tr>
+            <tr>
+                <th>冬</th>
+                <td>みかん</td>
+            </tr>
+        </table>`,
+    })
+
+    // var FruitsListTitle = Vue.extend({
+    //     template: '<h1>フルーツ一覧</h1>'
+    // })
+
+    new Vue({
+        el: '#app'
+    })
+
+    // new Vue({
+    //     el: '#fruits-list'
+    // })
+
+    // new FruitsListTitle().$mount('#fruits-list')
+</script>
+
+
+</html>
