@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue@2.5.17"></script>
+    <script src="https://unpkg.com/vue-router@3.0.1"></script>
+    <title>vue_routerのチェック</title>
+</head>
+
+<body>
+    <div id="app">
+        <router-link to="/top">トップページ</router-link>
+        <router-link to="/users">ユーザー一覧ページ</router-link>
+        <router-link to="{name:'user',params:{userid:123}}">ユーザー詳細ページ</router-link>
+        <router-view></router-view>
+    </div>
+</body>
+
+<script>
+    var router = new VueRouter({
+        routes: [{
+                path: '/top',
+                component: {
+                    template: '<div>トップページです。</div>'
+                }
+
+            },
+            {
+                path: '/users',
+                component: {
+                    template: '<div>ユーザー一覧ページです。</div>'
+                }
+
+            },
+            {
+                path: '/users/:userid',
+                component: {
+                    template: '<div>ユーザーIDは{{$route.params.userid}}です。</div>'
+                }
+
+            },
+            {
+                path: '/user/:userid',
+                name: 'user',
+                component: {
+                    template: '<div>ユーザーIDは{{$route.params.userid}}です。</div>'
+                }
+            },
+        ]
+    })
+
+    var vm = new Vue({
+        router: router
+    }).$mount('#app')
+</script>
+
+</html>
